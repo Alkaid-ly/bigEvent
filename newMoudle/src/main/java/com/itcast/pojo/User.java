@@ -1,6 +1,7 @@
 package com.itcast.pojo;
 
 import lombok.Data;
+import net.minidev.json.annotate.JsonIgnore;
 
 import java.time.LocalDateTime;
 
@@ -14,10 +15,11 @@ import java.time.LocalDateTime;
 public class User {
     private Integer id;
     private String username;
+    @JsonIgnore
     private String password;
     private String nickname;
     private String email;
     private String user_pic;
-    private LocalDateTime create_time;
-    private LocalDateTime update_time;
+    private LocalDateTime createTime;
+    private LocalDateTime updateTime;
 }

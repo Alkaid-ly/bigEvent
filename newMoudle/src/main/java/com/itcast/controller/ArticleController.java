@@ -20,15 +20,15 @@ import java.util.Map;
 @RequestMapping("/article")
 public class ArticleController {
     @GetMapping("/list")
-    public Result<String> list(@RequestHeader(name="Authorization")String token, HttpServletResponse response){
+    public Result<String> list(/*@RequestHeader(name="Authorization")String token, HttpServletResponse response*/){
 //        验证token
-        try {
-            Map<String, Object> claims = JwtUtil.parseToken(token);
-            return Result.success("所有文章");
-        } catch (Exception e) {
-            response.setStatus(401);
-            return Result.error("未登录");
-        }
-
+//        try {
+//            Map<String, Object> claims = JwtUtil.parseToken(token);
+//
+//        } catch (Exception e) {
+//            response.setStatus(401);
+//            return Result.error("未登录");
+//        }
+        return Result.success("所有文章");
     }
 }

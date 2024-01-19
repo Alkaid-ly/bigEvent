@@ -5,14 +5,14 @@ import com.itcast.pojo.User;
 import com.itcast.service.UserService;
 import com.itcast.utils.JwtUtil;
 import com.itcast.utils.MD5Util;
+import com.itcast.utils.ThreadLocalUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.constraints.Pattern;
 import java.util.HashMap;
+import java.util.Map;
 
 /**
  * @Author: Lvlingyun
@@ -52,5 +52,14 @@ public class UserController {
         }else{
             return Result.error("密码错误");
         }
+    }
+    @GetMapping("/userInfo")
+    public Result<User> userInfo(/*@RequestHeader(name="Authorization") String token*/){
+        /*Map<String, Object> claims = JwtUtil.parseToken(token);
+        String username = (String) claims.get("username");*/
+        Map<String,Object> map = ThreadLocalUtil.get();
+        String username = (String) map.get("username");
+        User user = userService.findByUserName(username);
+        return Result.success(user);
     }
 }
