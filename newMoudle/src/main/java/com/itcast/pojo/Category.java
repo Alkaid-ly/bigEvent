@@ -2,6 +2,7 @@ package com.itcast.pojo;
 
 import lombok.Data;
 
+import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
 
 /**
@@ -12,9 +13,11 @@ import java.time.LocalDateTime;
  */@Data
 public class Category {
     private Integer id;
-    private String category_name;
-    private String category_alias;
-    private String create_user;
-    private LocalDateTime create_time;
-    private LocalDateTime update_time;
+    @NotNull
+    private String categoryName;
+    @NotNull
+    private String categoryAlias;
+    private Integer createUser;
+    private LocalDateTime createTime;
+    private LocalDateTime updateTime;
 }
